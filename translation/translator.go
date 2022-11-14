@@ -3,8 +3,8 @@ package translation //
 import "strings"
 
 func Translate(word string, language string) string {
-	word = sanitizeInput(word)         //
-	language = sanitizeInput(language) //
+	word = sanitizeInput(word)
+	language = sanitizeInput(language)
 
 	if word != "hello" {
 		return ""
@@ -17,6 +17,8 @@ func Translate(word string, language string) string {
 		return "hei"
 	case "german":
 		return "hallo"
+	case "french": //
+		return "bonjour"
 	default:
 		return ""
 	}
