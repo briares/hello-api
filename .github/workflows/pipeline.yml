@@ -12,6 +12,7 @@ jobs:
   test:
     needs:
       - format-check
+      - lint
     name: Test Application
     runs-on: ubuntu-latest
     steps:
@@ -48,6 +49,13 @@ jobs:
       uses: actions/checkout@v2
     - name: Run Format Check
       run: make check-format
+  lint:
+      name: Lint
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Lint
+          uses: golangci/golangci-lint-action@v2  #
 
   build:
     name: Build App
