@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/briares/hello-api/handlers"
 	"github.com/briares/hello-api/handlers/rest"
@@ -19,5 +20,10 @@ func main() {
 
 	log.Printf("listening on %s\n", addr) //
 
-	log.Fatal(http.ListenAndServe(addr, mux)) //
+	server := &http.Server{
+		Addr:              addr,
+		ReadHeaderTimeout: 3 * time.Second,
+		Handler:           mux,
+	}
+	log.Fatal(server.ListenAndServe()) //
 }

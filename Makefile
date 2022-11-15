@@ -3,6 +3,7 @@ GO_VERSION := 1.17  # <1>
 setup: # <2>
 	install-go
 	init-go
+	install-lint
 
 install-go: # <3>
 	wget "https://golang.org/dl/go$(GO_VERSION).linux-amd64.tar.gz"
@@ -12,6 +13,10 @@ install-go: # <3>
 init-go: # <4>
     echo 'export PATH=$$PATH:/usr/local/go/bin' >> $${HOME}/.bashrc
     echo 'export PATH=$$PATH:$${HOME}/go/bin' >> $${HOME}/.bashrc
+
+install-lint:
+	sudo curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $$(go env GOPATH)/bin v1.41.1
+
 
 upgrade-go: # <5>
 	sudo rm -rf /usr/bin/go
@@ -34,3 +39,6 @@ report:
 
 check-format:
 	test -z $$(go fmt ./...)
+
+static-check:
+	golangci-lint run	
