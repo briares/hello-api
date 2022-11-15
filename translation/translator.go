@@ -1,7 +1,9 @@
-package translation //
+// Package translation with the main function to translate words.
+package translation
 
 import "strings"
 
+// Translate a word given the language.
 func Translate(word string, language string) string {
 	word = sanitizeInput(word)
 	language = sanitizeInput(language)

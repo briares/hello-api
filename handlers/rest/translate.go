@@ -1,3 +1,4 @@
+// Package rest with the handlers.
 package rest
 
 import (
@@ -15,6 +16,7 @@ type Resp struct { //
 
 const defaultLanguage = "english"
 
+// TranslateHandler is the request handler for translating words.
 func TranslateHandler(w http.ResponseWriter, r *http.Request) {
 	enc := json.NewEncoder(w)
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
