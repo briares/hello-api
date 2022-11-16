@@ -65,6 +65,7 @@ func TestTranslate(t *testing.T) {
 		},
 	}
 
+	translation := translation.NewStaticService()
 	for _, test := range tt { //
 		// Act
 		res := translation.Translate(test.Word, test.Language) //

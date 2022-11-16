@@ -5,9 +5,12 @@ import (
 	"net/http"
 
 	"github.com/briares/hello-api/handlers/rest"
+	"github.com/briares/hello-api/translation"
 )
 
 // Translate request handler exposed as a cloud function.
 func Translate(w http.ResponseWriter, r *http.Request) {
-	rest.TranslateHandler(w, r)
+	translateHandler := rest.NewTranslateHandler(translation.NewStaticService())
+
+	translateHandler.TranslateHandler(w, r)
 }

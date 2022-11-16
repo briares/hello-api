@@ -4,6 +4,7 @@ setup: # <2>
 	install-go
 	init-go
 	install-lint
+	copy-hooks
 
 install-go: # <3>
 	wget "https://golang.org/dl/go$(GO_VERSION).linux-amd64.tar.gz"
@@ -42,3 +43,7 @@ check-format:
 
 static-check:
 	golangci-lint run	
+
+copy-hooks:
+	chmod +x scripts/hooks/*
+	cp -r scripts/hooks .git/.

@@ -7,6 +7,7 @@ import (
 
 	"github.com/briares/hello-api/handlers"
 	"github.com/briares/hello-api/handlers/rest"
+	"github.com/briares/hello-api/translation"
 )
 
 func main() {
@@ -15,8 +16,10 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/hello", rest.TranslateHandler) //
-	mux.HandleFunc("/health", handlers.HealthCheck) //
+	translationService := translation.NewStaticService()
+	translateHandler := rest.NewTranslateHandler(translationService)
+	mux.HandleFunc("/hello", translateHandler.TranslateHandler) //
+	mux.HandleFunc("/health", handlers.HealthCheck)             //
 
 	log.Printf("listening on %s\n", addr) //
 
