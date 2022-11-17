@@ -29,8 +29,6 @@ type Resp struct { //
 	Translation string `json:"translation"`
 }
 
-const defaultLanguage = "english"
-
 // TranslateHandler will take a given request with a path value of the
 // word to be translated and a query parameter of the
 // language to translate to.
