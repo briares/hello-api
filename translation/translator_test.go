@@ -1,4 +1,4 @@
-package translation_test //
+package translation_test
 
 import (
 	"testing"
@@ -8,12 +8,12 @@ import (
 
 func TestTranslate(t *testing.T) {
 	// Arrange
-	tt := []struct { //
+	tt := []struct { // <1>
 		Word        string
 		Language    string
 		Translation string
 	}{
-		{ //
+		{ //<2>
 			Word:        "hello",
 			Language:    "english",
 			Translation: "hello",
@@ -28,33 +28,33 @@ func TestTranslate(t *testing.T) {
 			Language:    "finnish",
 			Translation: "hei",
 		},
-		{
-			Word:        "hello",
-			Language:    "dutch",
-			Translation: "",
-		},
-		{
+		{ // <1>
 			Word:        "bye",
 			Language:    "dutch",
 			Translation: "",
 		},
 		{
+			Word:        "hello",
+			Language:    "dutch",
+			Translation: "",
+		},
+		{ // <1>
 			Word:        "bye",
 			Language:    "german",
 			Translation: "",
 		},
 		{
 			Word:        "hello",
-			Language:    "German", //
+			Language:    "German", // <1>
 			Translation: "hallo",
 		},
 		{
-			Word:        "Hello", //
+			Word:        "Hello", // <2>
 			Language:    "german",
 			Translation: "hallo",
 		},
 		{
-			Word:        "hello ", //
+			Word:        "hello ", // <3>
 			Language:    "german",
 			Translation: "hallo",
 		},
@@ -64,14 +64,13 @@ func TestTranslate(t *testing.T) {
 			Translation: "bonjour",
 		},
 	}
-
-	translation := translation.NewStaticService()
-	for _, test := range tt { //
+	underTest := translation.NewStaticService()
+	for _, test := range tt { // <3>
 		// Act
-		res := translation.Translate(test.Word, test.Language) //
+		res := underTest.Translate(test.Word, test.Language) // <4>
 
 		// Assert
-		if res != test.Translation { //
+		if res != test.Translation { // <5>
 			t.Errorf(
 				`expected "%s" to be "%s" from "%s" but received "%s"`,
 				test.Word, test.Language, test.Translation, res)

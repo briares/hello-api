@@ -38,14 +38,15 @@ func (t *TranslateHandler) TranslateHandler(w http.ResponseWriter, r *http.Reque
 	enc := json.NewEncoder(w)
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
-	language := r.URL.Query().Get("language") //
+	language := r.URL.Query().Get("language")
 	if language == "" {
-		language = defaultLanguage
+		language = "english"
 	}
+	language = strings.ToLower(language)
 	word := strings.ReplaceAll(r.URL.Path, "/", "")
 	translation := t.service.Translate(word, language)
 	if translation == "" {
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(404)
 		return
 	}
 	resp := Resp{
