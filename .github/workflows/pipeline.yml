@@ -160,7 +160,7 @@ jobs:
         with:
           credentials: ${{ secrets.gcp_credentials }}
       - id: test
-        run: curl "${{ steps.deploy.outputs.url }}/translate/hello"      
+        run: curl "${{ steps.deploy.outputs.url }}/translate/hello"     
   containerize-buildpack:
     name: Build Container buildpack
     runs-on: ubuntu-latest #
