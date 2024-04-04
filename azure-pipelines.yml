@@ -10,8 +10,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
+- script: echo $MY_SECRET_ENV_VAR
   displayName: 'Run a one-line script'
+  env:
+    MY_SECRET_ENV_VAR: $(MY_SECRET) 
 - bash: |
     echo "My second secret variable: $FOO_TWO"
     if [ "$MY_SECRET_ENV_VAR" = "COLEGA" ]; then
