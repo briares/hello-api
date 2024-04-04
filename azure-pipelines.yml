@@ -13,14 +13,14 @@ steps:
 - script: echo $MY_SECRET_ENV_VAR
   displayName: 'Run a one-line script'
   env:
-    MY_SECRET_ENV_VAR: $(MY_SECRET) 
+    MY_SECRET: $(MY_SECRET) 
 - bash: |
     echo "My second secret variable: $FOO_TWO"
-    if [ "$MY_SECRET_ENV_VAR" = "COLEGA" ]; then
+    if [ "$MY_SECRET" = "COLEGA" ]; then
         echo "Strings are equal."
     else
         echo "Strings are not equal."
     fi
-    echo $MY_SECRET_ENV_VAR
+    echo $MY_SECRET
   env:
-    MY_SECRET_ENV_VAR: $(MY_SECRET) 
+    MY_SECRET: $(MY_SECRET) 
