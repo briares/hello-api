@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo $MY_SECRET_ENV_VAR
+- script: echo $MY_SECRET
   displayName: 'Run a one-line script'
   env:
     MY_SECRET: $(MY_SECRET) 
