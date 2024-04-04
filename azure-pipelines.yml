@@ -14,7 +14,7 @@ steps:
   displayName: 'Run a one-line script'
 - bash: |
     echo "My second secret variable: $FOO_TWO"
-    if [ "$MY_SECRET" = "COLEGA" ]; then
+    if [ "$MY_SECRET_ENV_VAR" = "COLEGA" ]; then
         echo "Strings are equal."
     else
         echo "Strings are not equal."
