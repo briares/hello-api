@@ -12,8 +12,13 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- bash: |
+    echo "My second secret variable: $FOO_TWO"
+    if [ "$MY_SECRET" = "bar" ]; then
+        echo "Strings are equal."
+    else
+        echo "Strings are not equal."
+    fi
+    echo $MY_SECRET_ENV_VAR
+  env:
+    MY_SECRET_ENV_VAR: $(MY_SECRET) 
